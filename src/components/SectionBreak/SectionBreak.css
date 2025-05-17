@@ -1,0 +1,38 @@
+.section-break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.section-break::before,
+.section-break::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 200px;
+  background-image: url("/public/section-rip.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+}
+
+.section-break::before {
+  top: -140px; /* Slight overlap to prevent gaps */
+}
+
+.section-break::after {
+  bottom: -140px; /* Slight overlap to prevent gaps */
+  transform: rotate(180deg);
+}

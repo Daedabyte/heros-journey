@@ -9,7 +9,7 @@ const ProductsSection = () => {
       id: 1,
       name: "Jace, the Mind Sculptor",
       category: "magic",
-      image: "sauron-card.webp",
+      image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
       price: "$89.99",
       description:
@@ -19,7 +19,7 @@ const ProductsSection = () => {
       id: 2,
       name: "Charizard",
       category: "pokemon",
-      image: "m-gyarados.png",
+      image: "/images/m-gyarados.png",
       rarity: "Holo Rare",
       price: "$149.99",
       description:
@@ -29,7 +29,7 @@ const ProductsSection = () => {
       id: 3,
       name: "Liliana of the Veil",
       category: "magic",
-      image: "magic-card-2.jpg",
+      image: "/images/magic-card-2.jpg",
       rarity: "Mythic Rare",
       price: "$79.99",
       description:
@@ -39,7 +39,7 @@ const ProductsSection = () => {
       id: 4,
       name: "Pikachu V",
       category: "pokemon",
-      image: "espeon-ex.jpg",
+      image: "/images/espeon-ex.jpg",
       rarity: "Ultra Rare",
       price: "$19.99",
       description:
@@ -50,7 +50,7 @@ const ProductsSection = () => {
       id: 5,
       name: "Jace, the Mind Sculptor",
       category: "magic",
-      image: "sauron-card.webp",
+      image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
       price: "$89.99",
       description:
@@ -60,7 +60,7 @@ const ProductsSection = () => {
       id: 6,
       name: "Charizard",
       category: "pokemon",
-      image: "m-gyarados.png",
+      image: "/images/m-gyarados.png",
       rarity: "Holo Rare",
       price: "$149.99",
       description:
@@ -70,7 +70,7 @@ const ProductsSection = () => {
       id: 7,
       name: "Liliana of the Veil",
       category: "magic",
-      image: "magic-card-2.jpg",
+      image: "/images/magic-card-2.jpg",
       rarity: "Mythic Rare",
       price: "$79.99",
       description:
@@ -80,7 +80,7 @@ const ProductsSection = () => {
       id: 8,
       name: "Pikachu V",
       category: "pokemon",
-      image: "espeon-ex.jpg",
+      image: "/images/espeon-ex.jpg",
       rarity: "Ultra Rare",
       price: "$19.99",
       description:
@@ -91,7 +91,7 @@ const ProductsSection = () => {
       id: 9,
       name: "Jace, the Mind Sculptor",
       category: "magic",
-      image: "sauron-card.webp",
+      image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
       price: "$89.99",
       description:
@@ -101,7 +101,7 @@ const ProductsSection = () => {
       id: 10,
       name: "Charizard",
       category: "pokemon",
-      image: "m-gyarados.png",
+      image: "/images/m-gyarados.png",
       rarity: "Holo Rare",
       price: "$149.99",
       description:
@@ -111,7 +111,7 @@ const ProductsSection = () => {
       id: 11,
       name: "Liliana of the Veil",
       category: "magic",
-      image: "magic-card-2.jpg",
+      image: "/images/magic-card-2.jpg",
       rarity: "Mythic Rare",
       price: "$79.99",
       description:
@@ -121,7 +121,7 @@ const ProductsSection = () => {
       id: 12,
       name: "Pikachu V",
       category: "pokemon",
-      image: "espeon-ex.jpg",
+      image: "/images/espeon-ex.jpg",
       rarity: "Ultra Rare",
       price: "$19.99",
       description:

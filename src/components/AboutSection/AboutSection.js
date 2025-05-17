@@ -8,7 +8,7 @@ const AboutSection = () => {
         <h2 className="section-title">About Hero's Journey</h2>
         <div className="about-content">
           <div className="about-image">
-            <img src="about.svg" alt="Shop Interior" />
+            <img src="/images/about.svg" alt="Shop Interior" />
           </div>
           <div className="about-text">
             <p>

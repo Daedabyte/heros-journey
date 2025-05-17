@@ -41,10 +41,7 @@ const Header = () => {
     <nav id="main-nav">
       <div className="nav-container">
         <div className="logo">
-          <img src="1.svg" alt="Hero's Journey Logo" />
-          <span className="logo-text">
-            Hero's <span className="gold-text">Journey</span>
-          </span>
+          <img src="/images/1.svg" alt="Hero's Journey Logo" />
         </div>
         <div
           className={`nav-links ${isMenuOpen ? "active" : ""}`}

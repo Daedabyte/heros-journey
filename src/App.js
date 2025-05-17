@@ -60,11 +60,11 @@ function App() {
       <HeroSection />
       <AffiliateBanner />
       <AboutSection />
-      <SectionBreak backgroundImage="pokemon-counter.jpg" />
+      <SectionBreak backgroundImage="/images/pokemon-counter.jpg" />
       <ProductsSection />
-      <SectionBreak backgroundImage="magic-counter.jpg" />
+      <SectionBreak backgroundImage="/images/magic-counter.jpg" />
       <EventsSection />
-      <SectionBreak backgroundImage="table-game.jpg" />
+      <SectionBreak backgroundImage="/images/table-game.jpg" />
       <VisitSection />
       <BackToTop />
       <Footer />

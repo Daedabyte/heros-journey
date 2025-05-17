@@ -7,15 +7,15 @@ const AffiliateBanner = () => {
       <div className="affiliate-logos-carousel">
         <div className="carousel-track">
           {/* Double the items for seamless infinite scroll */}
-          <img src="mtg-logo.png" alt="Magic: The Gathering Logo" />
-          <img src="pokemon-logo.png" alt="Pokemon Logo" />
-          <img src="dnd-logo.png" alt="Dungeons & Dragons Logo" />
-          <img src="lorcana-logo.png" alt="Lorcana Logo" />
+          <img src="/images/mtg-logo.png" alt="Magic: The Gathering Logo" />
+          <img src="/images/pokemon-logo.png" alt="Pokemon Logo" />
+          <img src="/images/dnd-logo.png" alt="Dungeons & Dragons Logo" />
+          <img src="/images/lorcana-logo.png" alt="Lorcana Logo" />
           {/* Duplicate items */}
-          <img src="mtg-logo.png" alt="Magic: The Gathering Logo" />
-          <img src="pokemon-logo.png" alt="Pokemon Logo" />
-          <img src="dnd-logo.png" alt="Dungeons & Dragons Logo" />
-          <img src="lorcana-logo.png" alt="Lorcana Logo" />
+          <img src="/images/mtg-logo.png" alt="Magic: The Gathering Logo" />
+          <img src="/images/pokemon-logo.png" alt="Pokemon Logo" />
+          <img src="/images/dnd-logo.png" alt="Dungeons & Dragons Logo" />
+          <img src="/images/lorcana-logo.png" alt="Lorcana Logo" />
         </div>
       </div>
     </div>

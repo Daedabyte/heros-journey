@@ -1,8 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ProductsSection.css";
 
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+
+  // Create refs to hold references to all cards
+  const cardRefs = useRef([]);
+
+  // Initialize the card refs when products change
+  useEffect(() => {
+    cardRefs.current = cardRefs.current.slice(0, filterProducts().length);
+  }, [activeCategory]);
+
+  // Function to handle the tilt effect
+  const handleTilt = (e, index) => {
+    const card = cardRefs.current[index];
+    if (!card) return;
+
+    // Get the product to check if it should have holographic effect
+    const product = filterProducts()[index];
+    if (!product.isHolographic) {
+      // If not holographic, just add a simple hover effect
+      card.style.transform = "scale3d(1.07, 1.07, 1.07)";
+      return;
+    }
+
+    const cardRect = card.getBoundingClientRect();
+    const cardWidth = cardRect.width;
+    const cardHeight = cardRect.height;
+
+    // Calculate cursor position relative to the card center
+    const centerX = cardRect.left + cardWidth / 2;
+    const centerY = cardRect.top + cardHeight / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+
+    // Calculate rotation based on cursor position
+    // Adjust these values to control the tilt intensity
+    const rotateY = (mouseX / (cardWidth / 2)) * 15; // Max 15 degrees rotation
+    const rotateX = -(mouseY / (cardHeight / 2)) * 15;
+
+    // Apply the rotation transform
+    card.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale3d(1.10, 1.10, 1.10)`;
+
+    // Update the shine effect position
+    const shine = card.querySelector(".card-shine");
+    if (shine) {
+      shine.style.background = `radial-gradient(circle at ${
+        50 + (mouseX / cardWidth) * 30
+      }% ${
+        50 + (mouseY / cardHeight) * 30
+      }%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%)`;
+      shine.style.opacity = "1";
+    }
+  };
+
+  // Function to reset the card to its original position
+  const resetTilt = (index) => {
+    const card = cardRefs.current[index];
+    if (!card) return;
+
+    const product = filterProducts()[index];
+
+    if (product.isHolographic) {
+      // Smoothly transition back to the original state for holographic cards
+      card.style.transform =
+        "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)";
+
+      // Reset shine effect
+      const shine = card.querySelector(".card-shine");
+      if (shine) {
+        shine.style.opacity = "0";
+      }
+    } else {
+      // Reset regular cards
+      card.style.transform = "scale3d(1, 1, 1)";
+    }
+  };
 
   const products = [
     {
@@ -12,40 +86,43 @@ const ProductsSection = () => {
       image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
       price: "$89.99",
+      isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 2,
-      name: "Charizard",
+      name: "Jace, the Mind Sculptor",
       category: "pokemon",
       image: "/images/m-gyarados.png",
-      rarity: "Holo Rare",
-      price: "$149.99",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      isHolographic: true,
       description:
-        "The iconic fire Pokemon that has been a fan favorite since the beginning of the franchise.",
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 3,
-      name: "Liliana of the Veil",
+      name: "Jace, the Mind Sculptor",
       category: "magic",
       image: "/images/magic-card-2.jpg",
       rarity: "Mythic Rare",
-      price: "$79.99",
+      price: "$89.99",
+      isHolographic: false,
       description:
-        "A powerful black planeswalker that excels at controlling the board through sacrifice effects.",
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 4,
-      name: "Pikachu V",
-      category: "pokemon",
+      name: "Jace, the Mind Sculptor",
+      category: "magic",
       image: "/images/espeon-ex.jpg",
-      rarity: "Ultra Rare",
-      price: "$19.99",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      isHolographic: true,
       description:
-        "The fan-favorite electric mouse Pokemon in its powerful V form.",
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
-    // Duplicating items for multiple grids
     {
       id: 5,
       name: "Jace, the Mind Sculptor",
@@ -58,37 +135,6 @@ const ProductsSection = () => {
     },
     {
       id: 6,
-      name: "Charizard",
-      category: "pokemon",
-      image: "/images/m-gyarados.png",
-      rarity: "Holo Rare",
-      price: "$149.99",
-      description:
-        "The iconic fire Pokemon that has been a fan favorite since the beginning of the franchise.",
-    },
-    {
-      id: 7,
-      name: "Liliana of the Veil",
-      category: "magic",
-      image: "/images/magic-card-2.jpg",
-      rarity: "Mythic Rare",
-      price: "$79.99",
-      description:
-        "A powerful black planeswalker that excels at controlling the board through sacrifice effects.",
-    },
-    {
-      id: 8,
-      name: "Pikachu V",
-      category: "pokemon",
-      image: "/images/espeon-ex.jpg",
-      rarity: "Ultra Rare",
-      price: "$19.99",
-      description:
-        "The fan-favorite electric mouse Pokemon in its powerful V form.",
-    },
-    // Duplicating again for third grid
-    {
-      id: 9,
       name: "Jace, the Mind Sculptor",
       category: "magic",
       image: "/images/sauron-card.webp",
@@ -98,34 +144,24 @@ const ProductsSection = () => {
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
-      id: 10,
-      name: "Charizard",
-      category: "pokemon",
-      image: "/images/m-gyarados.png",
-      rarity: "Holo Rare",
-      price: "$149.99",
-      description:
-        "The iconic fire Pokemon that has been a fan favorite since the beginning of the franchise.",
-    },
-    {
-      id: 11,
-      name: "Liliana of the Veil",
+      id: 7,
+      name: "Jace, the Mind Sculptor",
       category: "magic",
-      image: "/images/magic-card-2.jpg",
+      image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
-      price: "$79.99",
+      price: "$89.99",
       description:
-        "A powerful black planeswalker that excels at controlling the board through sacrifice effects.",
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
-      id: 12,
-      name: "Pikachu V",
-      category: "pokemon",
-      image: "/images/espeon-ex.jpg",
-      rarity: "Ultra Rare",
-      price: "$19.99",
+      id: 8,
+      name: "Jace, the Mind Sculptor",
+      category: "magic",
+      image: "/images/sauron-card.webp",
+      rarity: "Mythic Rare",
+      price: "$89.99",
       description:
-        "The fan-favorite electric mouse Pokemon in its powerful V form.",
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
   ];
 
@@ -171,23 +207,26 @@ const ProductsSection = () => {
           </button>
         </div>
         <div className="products-grid">
-          {filterProducts().map((product) => (
-            <div
-              key={product.id}
-              className="product-card"
-              data-category={product.category}
-            >
-              <div className="card-inner">
-                <div className="card-front">
+          {filterProducts().map((product, index) => (
+            <div key={product.id} className="product-card-container">
+              <div
+                className={`product-card ${
+                  product.isHolographic ? "holographic" : ""
+                }`}
+                data-category={product.category}
+                ref={(el) => (cardRefs.current[index] = el)}
+                onMouseMove={(e) => handleTilt(e, index)}
+                onMouseLeave={() => resetTilt(index)}
+              >
+                <div className="card-content">
+                  {product.isHolographic && <div className="card-shine"></div>}
                   <img src={product.image} alt={product.name} />
                 </div>
-                <div className="card-back">
-                  <h3>{product.name}</h3>
-                  <p className="product-rarity">{product.rarity}</p>
-                  <p className="product-price">{product.price}</p>
-                  <p className="product-description">{product.description}</p>
-                  <button className="product-btn">View Details</button>
-                </div>
+              </div>
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p className="product-rarity">{product.rarity}</p>
+                <p className="product-price">{product.price}</p>
               </div>
             </div>
           ))}

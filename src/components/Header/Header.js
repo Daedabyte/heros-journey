@@ -37,6 +37,27 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  // Handle smooth scrolling with header offset
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    closeMenu();
+
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      // Get header height to use as offset
+      const headerHeight = document.getElementById("main-nav").offsetHeight;
+
+      // Calculate position to scroll to
+      const targetPosition = targetSection.offsetTop - headerHeight;
+
+      // Scroll with smooth behavior
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <nav id="main-nav">
       <div className="nav-container">
@@ -50,35 +71,35 @@ const Header = () => {
           <a
             href="#home"
             className={activeLink === "home" ? "active" : ""}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "home")}
           >
             Home
           </a>
           <a
             href="#about"
             className={activeLink === "about" ? "active" : ""}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "about")}
           >
             About
           </a>
           <a
             href="#products"
             className={activeLink === "products" ? "active" : ""}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "products")}
           >
             Products
           </a>
           <a
             href="#events"
             className={activeLink === "events" ? "active" : ""}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "events")}
           >
             Events
           </a>
           <a
             href="#visit"
             className={activeLink === "visit" ? "active" : ""}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, "visit")}
           >
             Visit Us
           </a>

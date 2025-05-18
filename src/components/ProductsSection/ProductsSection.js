@@ -3,6 +3,7 @@ import "./ProductsSection.css";
 
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [isMobile, setIsMobile] = useState(false);
 
   // Create refs to hold references to all cards
   const cardRefs = useRef([]);
@@ -10,10 +11,27 @@ const ProductsSection = () => {
   // Initialize the card refs when products change
   useEffect(() => {
     cardRefs.current = cardRefs.current.slice(0, filterProducts().length);
+
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile);
   }, [activeCategory]);
 
   // Function to handle the tilt effect
   const handleTilt = (e, index) => {
+    // Skip effect if on mobile
+    if (isMobile) return;
+
     const card = cardRefs.current[index];
     if (!card) return;
 
@@ -57,6 +75,9 @@ const ProductsSection = () => {
 
   // Function to reset the card to its original position
   const resetTilt = (index) => {
+    // Skip effect if on mobile
+    if (isMobile) return;
+
     const card = cardRefs.current[index];
     if (!card) return;
 
@@ -212,14 +233,16 @@ const ProductsSection = () => {
               <div
                 className={`product-card ${
                   product.isHolographic ? "holographic" : ""
-                }`}
+                } ${isMobile ? "mobile" : ""}`}
                 data-category={product.category}
                 ref={(el) => (cardRefs.current[index] = el)}
                 onMouseMove={(e) => handleTilt(e, index)}
                 onMouseLeave={() => resetTilt(index)}
               >
                 <div className="card-content">
-                  {product.isHolographic && <div className="card-shine"></div>}
+                  {product.isHolographic && !isMobile && (
+                    <div className="card-shine"></div>
+                  )}
                   <img src={product.image} alt={product.name} />
                 </div>
               </div>

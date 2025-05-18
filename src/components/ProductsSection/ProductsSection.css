@@ -7,6 +7,7 @@
   justify-content: center;
   margin-bottom: 2rem;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .category-btn {
@@ -43,8 +44,11 @@
   transition: transform 0.3s ease;
 }
 
-.product-card-container:hover {
-  transform: translateY(-5px);
+/* Only apply hover transform on non-mobile devices */
+@media (hover: hover) and (pointer: fine) {
+  .product-card-container:hover {
+    transform: translateY(-5px);
+  }
 }
 
 .product-card {
@@ -73,9 +77,9 @@
   );
   background-size: 400% 400%;
   animation: holographicGradient 10s ease infinite;
-} */
+}
 
-/* @keyframes holographicGradient {
+@keyframes holographicGradient {
   0% {
     background-position: 0% 50%;
   }
@@ -114,7 +118,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px 10px 0 0;
   overflow: hidden;
 }
 
@@ -122,7 +125,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  transition: transform 0.5s ease;
   z-index: 1;
 }
 
@@ -188,14 +190,59 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+/* Mobile styles */
 @media (max-width: 768px) {
   .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 
-  /* Disable tilt effect on mobile devices */
+  .product-card {
+    height: 250px;
+  }
+
+  /* Disable all hover effects and interactions on mobile */
+  .product-card.mobile {
+    pointer-events: none;
+    cursor: default;
+    transform: none !important;
+  }
+
+  /* Disable transitions for better performance */
+  .product-card,
+  .product-card-container,
+  .card-content img {
+    transition: none;
+  }
+
+  /* Remove all hover transformations on mobile */
+  .product-card-container:hover,
   .product-card:hover {
     transform: none !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Slow down holographic animation on mobile for better performance */
+  .product-card.holographic.mobile {
+    animation-duration: 20s;
+  }
+
+  .card-shine {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .product-card.holographic::before {
+    right: 56px;
+  }
+}
+
+/* Further target touch devices specifically */
+@media (pointer: coarse) {
+  .product-card {
+    pointer-events: none;
+  }
+
+  .product-card-container:hover {
+    transform: none;
   }
 }

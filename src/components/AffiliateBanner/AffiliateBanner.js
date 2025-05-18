@@ -11,11 +11,15 @@ const AffiliateBanner = () => {
           <img src="/images/pokemon-logo.png" alt="Pokemon Logo" />
           <img src="/images/dnd-logo.png" alt="Dungeons & Dragons Logo" />
           <img src="/images/lorcana-logo.png" alt="Lorcana Logo" />
+          <img src="/images/one-piece-logo.png" alt="One Piece Logo" />
+          <img src="/images/warhammer-logo.png" alt="Warhammer Logo" />
           {/* Duplicate items */}
           <img src="/images/mtg-logo.png" alt="Magic: The Gathering Logo" />
           <img src="/images/pokemon-logo.png" alt="Pokemon Logo" />
           <img src="/images/dnd-logo.png" alt="Dungeons & Dragons Logo" />
           <img src="/images/lorcana-logo.png" alt="Lorcana Logo" />
+          <img src="/images/one-piece-logo.png" alt="One Piece Logo" />
+          <img src="/images/warhammer-logo.png" alt="Warhammer Logo" />
         </div>
       </div>
     </div>

@@ -12,20 +12,31 @@ const AboutSection = () => {
           </div>
           <div className="about-text">
             <p>
-              Hero's Journey is more than just a game shop - we're a community
-              hub for players of all ages and experience levels. From Magic: The
-              Gathering to Pokemon, D&D to board games, we offer products, play
-              space, and events that bring gamers together.
+              Welcome to Hero's Journey - Mount Jackson's Premier Card & Game
+              Shop
             </p>
             <p>
-              Founded in 2018 by passionate gamers, our mission is to create an
-              inclusive, welcoming environment where adventures are shared and
-              friendships are forged through the power of games.
+              We're your local game store here in beautiful Mount Jackson, VA
+              and the entire Shenandoah Valley! Discover our extensive
+              collection of trading cards, including Magic: The Gathering
+              singles, Pokémon cards, and more.
             </p>
             <p>
-              Whether you're a seasoned pro or just starting your gaming
-              journey, our knowledgeable staff is here to help you find exactly
-              what you need to make your next game night legendary.
+              Browse our regularly restocked sealed products from top card
+              games, or bring your collection for trading with our passionate
+              community. Check our weekly events calendar for Friday Night
+              Magic, Pokémon League, D&D campaigns, and special tournaments!
+            </p>
+            <p>
+              Whether you're a competitive player or just starting your gaming
+              journey, we are here to help you find exactly what you need. Visit
+              us today in downtown Mount Jackson and become part of our growing
+              gaming family! Be sure to check out our calendar for upcoming
+              events!
+            </p>
+            <p style={{ display: "none" }}>
+              #MountJacksonVA #TradingCardGames #MagicTheGathering #PokemonCards
+              #LocalGameStore #FridayNightMagic
             </p>
           </div>
         </div>

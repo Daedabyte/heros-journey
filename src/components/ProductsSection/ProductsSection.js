@@ -54,8 +54,7 @@ const ProductsSection = () => {
     const mouseY = e.clientY - centerY;
 
     // Calculate rotation based on cursor position
-    // Adjust these values to control the tilt intensity
-    const rotateY = (mouseX / (cardWidth / 2)) * 15; // Max 15 degrees rotation
+    const rotateY = (mouseX / (cardWidth / 2)) * 15;
     const rotateX = -(mouseY / (cardHeight / 2)) * 15;
 
     // Apply the rotation transform
@@ -64,12 +63,30 @@ const ProductsSection = () => {
     // Update the shine effect position
     const shine = card.querySelector(".card-shine");
     if (shine) {
-      shine.style.background = `radial-gradient(circle at ${
-        50 + (mouseX / cardWidth) * 30
-      }% ${
+      const angle = (Math.atan2(mouseY, mouseX) * 180) / Math.PI + 180;
+
+      // Subtle, more transparent rainbow gradient
+      shine.style.background = `
+        radial-gradient(circle at ${50 + (mouseX / cardWidth) * 30}% ${
         50 + (mouseY / cardHeight) * 30
-      }%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%)`;
+      }%, 
+          rgba(255,255,255,0.4) 0%, 
+          rgba(255,255,255,0.08) 25%, 
+          rgba(255,255,255,0.02) 50%, 
+          transparent 70%
+        ),
+        conic-gradient(
+          from ${angle}deg,
+          rgba(255,0,204,0.13), 
+          rgba(51,51,255,0.10), 
+          rgba(0,255,204,0.10), 
+          rgba(255,255,0,0.10), 
+          rgba(255,102,0,0.13), 
+          rgba(255,0,204,0.13)
+        )
+      `;
       shine.style.opacity = "1";
+      shine.style.mixBlendMode = "lighter";
     }
   };
 
@@ -102,9 +119,9 @@ const ProductsSection = () => {
   const products = [
     {
       id: 1,
-      name: "Jace, the Mind Sculptor",
-      category: "magic",
-      image: "/images/sauron-card.webp",
+      name: "Iono's Bellibolt (Special Illustration Rare or SIR)",
+      category: "pokemon",
+      image: "/images/ionos.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
       isHolographic: true,
@@ -113,9 +130,9 @@ const ProductsSection = () => {
     },
     {
       id: 2,
-      name: "Jace, the Mind Sculptor",
+      name: "Salamence ex SIR",
       category: "pokemon",
-      image: "/images/m-gyarados.png",
+      image: "/images/salamance.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
       isHolographic: true,
@@ -124,20 +141,20 @@ const ProductsSection = () => {
     },
     {
       id: 3,
-      name: "Jace, the Mind Sculptor",
-      category: "magic",
-      image: "/images/magic-card-2.jpg",
+      name: "Raging Bolt ex SIR",
+      category: "pokemon",
+      image: "/images/raging-bolt.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
-      isHolographic: false,
+      isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 4,
-      name: "Jace, the Mind Sculptor",
-      category: "magic",
-      image: "/images/espeon-ex.jpg",
+      name: "Charizard V Alternate Art (AA, from Brilliant Stars)",
+      category: "pokemon",
+      image: "/images/charizard.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
       isHolographic: true,
@@ -146,27 +163,40 @@ const ProductsSection = () => {
     },
     {
       id: 5,
-      name: "Jace, the Mind Sculptor",
-      category: "magic",
-      image: "/images/sauron-card.webp",
+      name: "Umbreon Vmax AA (Evolving Skies)",
+      category: "pokemon",
+      image: "/images/umbreon.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
+      isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 6,
-      name: "Jace, the Mind Sculptor",
-      category: "magic",
-      image: "/images/sauron-card.webp",
+      name: "Tyranitar V AA",
+      category: "pokemon",
+      image: "/images/tyranitar.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
+      isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 7,
-      name: "Jace, the Mind Sculptor",
+      name: "Arceus Vstar (gold Crown Zenith Galar Gallery)",
+      category: "pokemon",
+      image: "/images/arceus.png",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      isHolographic: true,
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 8,
+      name: "Sauron (movie poster style)",
       category: "magic",
       image: "/images/sauron-card.webp",
       rarity: "Mythic Rare",
@@ -175,10 +205,61 @@ const ProductsSection = () => {
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
-      id: 8,
-      name: "Jace, the Mind Sculptor",
+      id: 9,
+      name: "Aurelia, the Law Above (Serialized)",
       category: "magic",
-      image: "/images/sauron-card.webp",
+      image: "/images/aurelia.jpg",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      isHolographic: true,
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 10,
+      name: "Tundra (revised)",
+      category: "magic",
+      image: "/images/tundra.jpg",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 11,
+      name: "Wheel of Fortune (revised)",
+      category: "magic",
+      image: "/images/wheel-of-fortune.jpg",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 12,
+      name: "Mox Opal (Scars of Mirrodin)",
+      category: "magic",
+      image: "/images/mox-opal.jpg",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 13,
+      name: "Mirror Universe (Legends)",
+      category: "magic",
+      image: "/images/mirror-universe.jpg",
+      rarity: "Mythic Rare",
+      price: "$89.99",
+      description:
+        "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
+    },
+    {
+      id: 14,
+      name: "Ugin, Eye of the Storms (Tarkir)",
+      category: "magic",
+      image: "/images/ugin.jpg",
       rarity: "Mythic Rare",
       price: "$89.99",
       description:
@@ -200,7 +281,7 @@ const ProductsSection = () => {
   return (
     <section id="products" className="products-section">
       <div className="section-container">
-        <h2 className="section-title">What we got</h2>
+        <h2 className="section-title">Inside the Case</h2>
         <div className="product-categories">
           <button
             className={`category-btn ${

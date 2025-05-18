@@ -6,10 +6,7 @@ const Footer = () => {
     <footer>
       <div className="footer-container">
         <div className="footer-logo">
-          <img src="hero-journey-logo.png" alt="Hero's Journey Logo" />
-          <span className="logo-text">
-            Hero's <span className="gold-text">Journey</span>
-          </span>
+          <img src="/images/hj-logo-with-name.png" alt="Hero's Journey Logo" />
         </div>
         <div className="footer-links">
           <a href="#home">Home</a>

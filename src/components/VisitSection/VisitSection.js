@@ -24,7 +24,7 @@ const VisitSection = () => {
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <h3>Address</h3>
-                <p>5968 Main St</p>
+                <p>5968 B Main Street</p>
                 <p>Mt Jackson, VA 22842</p>
               </div>
             </div>
@@ -32,14 +32,7 @@ const VisitSection = () => {
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>(555) 123-4567</p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <i className="fas fa-envelope"></i>
-              <div>
-                <h3>Email</h3>
-                <p>info@herosjourney.com</p>
+                <p>(540)477-HERO [4376]</p>
               </div>
             </div>
             <div className="contact-item">
@@ -47,23 +40,38 @@ const VisitSection = () => {
               <div>
                 <h3>Discord</h3>
                 <a
-                  href="https://discord.gg/herosjourney"
+                  href="https://discord.gg/QPjjWGeAuK"
                   className="discord-link"
                 >
                   Join Our Community
                 </a>
               </div>
             </div>
+            <div className="contact-item">
+              <i className="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p>herosjourneycardshop@gmail.com </p>
+              </div>
+            </div>
             <div className="hours">
               <h3>Store Hours</h3>
               <p>
-                <span>Monday - Friday:</span> 11:00 AM - 9:00 PM
+                <span>Monday - Tuesday</span> Closed
               </p>
               <p>
-                <span>Saturday:</span> 10:00 AM - 10:00 PM
+                <span>Wednesday - Saturday</span> 2:00 PM - 10:00 PM
               </p>
               <p>
-                <span>Sunday:</span> 12:00 PM - 6:00 PM
+                <span>Sunday:</span> 11:00 AM - 6:00 PM
+              </p>
+              <p>
+                <i>
+                  hours may change to accomodate events/tournaments/or community
+                  requests. We're still actively adjusting our hours to provide
+                  the best times for customers, while also not staying open
+                  without demand.
+                </i>
               </p>
             </div>
           </div>

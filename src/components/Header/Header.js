@@ -87,7 +87,7 @@ const Header = () => {
             className={activeLink === "products" ? "active" : ""}
             onClick={(e) => handleNavClick(e, "products")}
           >
-            Products
+            Inside the Case
           </a>
           <a
             href="#events"

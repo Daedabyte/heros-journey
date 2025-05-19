@@ -119,11 +119,9 @@ const ProductsSection = () => {
   const products = [
     {
       id: 1,
-      name: "Iono's Bellibolt (Special Illustration Rare or SIR)",
+      name: "Iono's Bellibolt SIR",
       category: "pokemon",
       image: "/images/ionos.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
@@ -133,8 +131,6 @@ const ProductsSection = () => {
       name: "Salamence ex SIR",
       category: "pokemon",
       image: "/images/salamance.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
@@ -144,30 +140,24 @@ const ProductsSection = () => {
       name: "Raging Bolt ex SIR",
       category: "pokemon",
       image: "/images/raging-bolt.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 4,
-      name: "Charizard V Alternate Art (AA, from Brilliant Stars)",
+      name: "Charizard V AA",
       category: "pokemon",
       image: "/images/charizard.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 5,
-      name: "Umbreon Vmax AA (Evolving Skies)",
+      name: "Umbreon Vmax AA",
       category: "pokemon",
       image: "/images/umbreon.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
@@ -177,19 +167,15 @@ const ProductsSection = () => {
       name: "Tyranitar V AA",
       category: "pokemon",
       image: "/images/tyranitar.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
     {
       id: 7,
-      name: "Arceus Vstar (gold Crown Zenith Galar Gallery)",
+      name: "Arceus Vstar Gold Crown Zenith",
       category: "pokemon",
       image: "/images/arceus.png",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
@@ -199,8 +185,6 @@ const ProductsSection = () => {
       name: "Sauron (movie poster style)",
       category: "magic",
       image: "/images/sauron-card.webp",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -208,9 +192,7 @@ const ProductsSection = () => {
       id: 9,
       name: "Aurelia, the Law Above (Serialized)",
       category: "magic",
-      image: "/images/aurelia.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
+      image: "/images/aurelia-serialized.jpg",
       isHolographic: true,
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
@@ -220,8 +202,6 @@ const ProductsSection = () => {
       name: "Tundra (revised)",
       category: "magic",
       image: "/images/tundra.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -230,8 +210,6 @@ const ProductsSection = () => {
       name: "Wheel of Fortune (revised)",
       category: "magic",
       image: "/images/wheel-of-fortune.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -240,8 +218,6 @@ const ProductsSection = () => {
       name: "Mox Opal (Scars of Mirrodin)",
       category: "magic",
       image: "/images/mox-opal.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -250,8 +226,6 @@ const ProductsSection = () => {
       name: "Mirror Universe (Legends)",
       category: "magic",
       image: "/images/mirror-universe.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -260,8 +234,6 @@ const ProductsSection = () => {
       name: "Ugin, Eye of the Storms (Tarkir)",
       category: "magic",
       image: "/images/ugin.jpg",
-      rarity: "Mythic Rare",
-      price: "$89.99",
       description:
         "One of the most powerful planeswalkers ever printed, Jace offers incredible versatility and control.",
     },
@@ -329,8 +301,6 @@ const ProductsSection = () => {
               </div>
               <div className="product-info">
                 <h3>{product.name}</h3>
-                <p className="product-rarity">{product.rarity}</p>
-                <p className="product-price">{product.price}</p>
               </div>
             </div>
           ))}

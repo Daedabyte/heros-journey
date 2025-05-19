@@ -33,7 +33,9 @@ const VisitSection = () => {
           </div>
         </div>
         <div className="hours">
-          <h3>Store Hours</h3>
+          <h3>
+            <i className="fa-solid fa-clock"></i>&nbsp;&nbsp;Store Hours
+          </h3>
           <p>
             <span>Monday - Tuesday</span> Closed
           </p>
@@ -44,10 +46,12 @@ const VisitSection = () => {
             <span>Sunday:</span> 11:00 AM - 6:00 PM
           </p>
           <p className="small-text">
-            hours may change to accomodate events/tournaments/or community
-            requests. We're still actively adjusting our hours to provide the
-            best times for customers, while also not staying open without
-            demand.
+            <i>
+              hours may change to accomodate events/tournaments/or community
+              requests. We're still actively adjusting our hours to provide the
+              best times for customers, while also not staying open without
+              demand.
+            </i>
           </p>
         </div>
         <div className="map-container">

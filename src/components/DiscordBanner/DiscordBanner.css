@@ -1,0 +1,53 @@
+.discord-banner-container {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  z-index: 10;
+  background-color: #5865f2;
+}
+
+.discord-banner {
+  width: 100%;
+  padding: 0.5rem;
+  height: min-content;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.discord-banner a {
+  width: 100%;
+  height: 100%;
+}
+
+.discord-banner h3 {
+  margin: 0;
+}
+
+.discord-banner * {
+  color: #e0e3ff;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.discord-banner i {
+  color: #e0e3ff;
+}
+
+.discord-banner .discord-logo:hover {
+  transform: rotate(-20deg);
+  transition: ease-out 0.3s;
+}
+
+@media (max-width: 768px) {
+  .discord-banner {
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+  .discord-banner * {
+    font-size: 1rem;
+  }
+}

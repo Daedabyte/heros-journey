@@ -1,3 +1,7 @@
+#events {
+  display: flex;
+  flex-direction: column;
+}
 .events-section {
   background-color: var(--white-color);
 }

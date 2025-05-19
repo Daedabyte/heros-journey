@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
-import AnnouncementBanner from "./components/AnnouncementBanner/AnnouncementBanner";
 import HeroSection from "./components/HeroSection/HeroSection";
 import AffiliateBanner from "./components/AffiliateBanner/AffiliateBanner";
 import AboutSection from "./components/AboutSection/AboutSection";
+import DiscordBanner from "./components/DiscordBanner/DiscordBanner";
 import SectionBreak from "./components/SectionBreak/SectionBreak";
 import ProductsSection from "./components/ProductsSection/ProductsSection";
 import EventsSection from "./components/EventsSection/EventsSection";
@@ -13,14 +13,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 function App() {
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
-
   useEffect(() => {
-    // Check if announcement was previously closed
-    if (localStorage.getItem("announcementClosed") === "true") {
-      setShowAnnouncement(false);
-    }
-
     // Initialize section animations
     const observerOptions = {
       root: null,
@@ -48,14 +41,8 @@ function App() {
     }
   }, []);
 
-  const closeAnnouncement = () => {
-    setShowAnnouncement(false);
-    localStorage.setItem("announcementClosed", "true");
-  };
-
   return (
     <div className="App">
-      {showAnnouncement && <AnnouncementBanner onClose={closeAnnouncement} />}
       <Header />
       <HeroSection />
       <AffiliateBanner />
@@ -66,6 +53,7 @@ function App() {
       <EventsSection />
       <SectionBreak backgroundImage="/images/table-game.jpg" />
       <VisitSection />
+      <DiscordBanner />
       <BackToTop />
       <Footer />
     </div>

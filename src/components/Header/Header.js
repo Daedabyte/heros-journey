@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import AnnouncementBanner from "../AnnouncementBanner/AnnouncementBanner";
 import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const navRef = useRef(null);
 
   useEffect(() => {
+    if (localStorage.getItem("announcementClosed") === "true") {
+      setShowAnnouncement(false);
+    }
     const handleScroll = () => {
       const sections = document.querySelectorAll("section");
 
@@ -28,6 +34,23 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target) &&
+        isMenuOpen
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -58,57 +81,83 @@ const Header = () => {
     }
   };
 
+  const closeAnnouncement = () => {
+    console.log("Closing announcement..."); // Add this debug line
+    setShowAnnouncement(false);
+    localStorage.setItem("announcementClosed", "true");
+
+    // Add padding to main-nav after announcement is closed
+    const mainNav = document.getElementById("main-nav");
+    if (mainNav) {
+      mainNav.style.paddingTop = "1rem";
+    }
+  };
+
   return (
-    <nav id="main-nav">
-      <div className="nav-container">
-        <div className="logo">
-          <img src="/images/1.svg" alt="Hero's Journey Logo" />
+    <>
+      <nav
+        id="main-nav"
+        className={!showAnnouncement ? "announcement-closed" : ""}
+      >
+        {showAnnouncement && <AnnouncementBanner onClose={closeAnnouncement} />}
+        <div className="nav-container">
+          <div className="logo">
+            <img src="/images/1.svg" alt="Hero's Journey Logo" />
+          </div>
+          <div
+            ref={navRef}
+            className={`nav-links ${isMenuOpen ? "active" : ""}`}
+            id="nav-links"
+          >
+            <button
+              className="close-mobile-nav"
+              onClick={closeMenu}
+              aria-label="Close navigation menu"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+            <a
+              href="#home"
+              className={activeLink === "home" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "home")}
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              className={activeLink === "about" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "about")}
+            >
+              About
+            </a>
+            <a
+              href="#products"
+              className={activeLink === "products" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "products")}
+            >
+              Inside the Case
+            </a>
+            <a
+              href="#events"
+              className={activeLink === "events" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "events")}
+            >
+              Events
+            </a>
+            <a
+              href="#visit"
+              className={activeLink === "visit" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "visit")}
+            >
+              Visit Us
+            </a>
+          </div>
+          <div className="menu-toggle" id="menu-toggle" onClick={toggleMenu}>
+            <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`}></i>
+          </div>
         </div>
-        <div
-          className={`nav-links ${isMenuOpen ? "active" : ""}`}
-          id="nav-links"
-        >
-          <a
-            href="#home"
-            className={activeLink === "home" ? "active" : ""}
-            onClick={(e) => handleNavClick(e, "home")}
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            className={activeLink === "about" ? "active" : ""}
-            onClick={(e) => handleNavClick(e, "about")}
-          >
-            About
-          </a>
-          <a
-            href="#products"
-            className={activeLink === "products" ? "active" : ""}
-            onClick={(e) => handleNavClick(e, "products")}
-          >
-            Inside the Case
-          </a>
-          <a
-            href="#events"
-            className={activeLink === "events" ? "active" : ""}
-            onClick={(e) => handleNavClick(e, "events")}
-          >
-            Events
-          </a>
-          <a
-            href="#visit"
-            className={activeLink === "visit" ? "active" : ""}
-            onClick={(e) => handleNavClick(e, "visit")}
-          >
-            Visit Us
-          </a>
-        </div>
-        <div className="menu-toggle" id="menu-toggle" onClick={toggleMenu}>
-          <i className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"}`}></i>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

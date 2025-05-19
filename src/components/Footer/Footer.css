@@ -17,6 +17,7 @@ footer {
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  background-color: var(--white-color);
 }
 
 .footer-logo img {
@@ -68,9 +69,15 @@ footer {
   transform: translateY(-3px);
 }
 
-.copyright {
+.copyright,
+.design-credit {
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.design-credit a {
+  color: var(--white-color);
+  font-weight: 600;
 }

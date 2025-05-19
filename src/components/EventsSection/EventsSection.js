@@ -363,10 +363,6 @@ const EventsSection = () => {
             </div>
           </div>
         )}
-
-        {/* <a href="#" className="view-all-btn" onClick={toggleFullCalendar}>
-          View Full Calendar
-        </a> */}
       </div>
     </section>
   );

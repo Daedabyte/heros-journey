@@ -1,6 +1,6 @@
 #announcement-banner {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   font-weight: 600;
   padding: 0.5rem 1rem;
   text-align: center;
@@ -11,7 +11,7 @@
 #close-announcement {
   background: none;
   border: none;
-  color: var(--primary-color);
+  color: var(--secondary-color);
   cursor: pointer;
   position: absolute;
   right: 10px;

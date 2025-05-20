@@ -8,13 +8,6 @@ const Footer = () => {
         <div className="footer-logo">
           <img src="/images/hj-logo-with-name.png" alt="Hero's Journey Logo" />
         </div>
-        <div className="footer-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#products">Inside the Case</a>
-          <a href="#events">Events</a>
-          <a href="#visit">Visit Us</a>
-        </div>
         <div className="social-links">
           <a
             href="https://www.facebook.com/profile.php?id=61571938187668"

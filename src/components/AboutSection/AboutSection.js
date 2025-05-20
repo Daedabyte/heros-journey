@@ -12,7 +12,7 @@ const AboutSection = () => {
           </div>
           <div className="about-text">
             <p>
-              Welcome to Hero's Journey - Mount Jackson's Premier Card & Game
+              Welcome to Hero's Journey, Mount Jackson's Premier Card & Game
               Shop
             </p>
             <p>

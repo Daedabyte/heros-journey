@@ -1,9 +1,15 @@
 .discord-banner-container {
   position: fixed;
-  bottom: 0;
+  top: 110px;
   width: 100vw;
   z-index: 10;
   background-color: #5865f2;
+  transition: top 0.3s ease;
+}
+
+/* When announcement is closed */
+.announcement-closed ~ .discord-banner-container {
+  top: 70px; /* Only account for nav height */
 }
 
 .discord-banner {
@@ -43,10 +49,19 @@
 }
 
 @media (max-width: 768px) {
+  .discord-banner-container {
+    top: 110px; /* Adjust for mobile heights */
+  }
+
+  .announcement-closed ~ .discord-banner-container {
+    top: 70px;
+  }
+
   .discord-banner {
     padding: 0.5rem 1rem;
     text-align: center;
   }
+
   .discord-banner * {
     font-size: 1rem;
   }

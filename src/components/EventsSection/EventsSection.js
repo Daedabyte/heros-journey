@@ -24,8 +24,8 @@ const EventsSection = () => {
     },
     {
       day: "Thursday",
-      title: "D&D Campaign",
-      time: "6:00 PM - 10:00 PM",
+      title: "D&D Night",
+      time: "5:00 PM - 10:00 PM",
       description:
         "Weekly Dungeons & Dragons sessions for adventurers of all levels.",
       color: "#326308",
@@ -216,11 +216,7 @@ const EventsSection = () => {
               });
 
               return (
-                <div
-                  key={event.id}
-                  className="event-card"
-                  onClick={() => setSelectedEvent(event)}
-                >
+                <div key={event.id} className="event-card">
                   <div
                     className="event-date"
                     style={{

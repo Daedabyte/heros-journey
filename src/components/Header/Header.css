@@ -24,6 +24,10 @@
   padding: 0 2rem;
 }
 
+:not(.announcement-closed) ~ .nav-container {
+  padding-top: 1rem;
+}
+
 .logo {
   display: flex;
   align-items: center;

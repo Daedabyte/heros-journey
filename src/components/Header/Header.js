@@ -5,7 +5,7 @@ import "./Header.css";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
   const navRef = useRef(null);
 
   useEffect(() => {

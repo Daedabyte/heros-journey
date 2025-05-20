@@ -87,34 +87,6 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Event Modal */
-.event-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  overflow: hidden; /* Prevent scrolling of background */
-}
-
-.event-modal {
-  background-color: var(--white-color);
-  border-radius: 10px;
-  padding: 2rem;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
-  max-height: 90vh; /* Limit height to prevent overflow */
-  overflow-y: auto; /* Allow scrolling inside modal if content is large */
-  transform: translateY(0); /* Ensures modal is centered on all browsers */
-  animation: modalFadeIn 0.3s ease; /* Smooth entry animation */
-}
-
 .event-time {
   margin-bottom: 1rem;
   display: flex;
@@ -316,12 +288,17 @@
 @keyframes modalFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translate(-50%, -50%) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
   }
+}
+
+/* Ensure body doesn't scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
 }
 
 /* Responsive Styles */
@@ -354,15 +331,6 @@
   }
 
   /* Modal adjustments for mobile */
-  .event-modal,
-  .full-calendar-modal {
-    width: 95%;
-  }
-
-  .event-modal {
-    padding: 1.5rem;
-  }
-
   .full-calendar-modal {
     height: 95vh;
   }

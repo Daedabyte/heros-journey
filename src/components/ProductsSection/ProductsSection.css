@@ -4,7 +4,7 @@
 
 .products-section p {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .product-categories {
@@ -213,6 +213,20 @@
   margin-bottom: 2rem;
 }
 
+.no-products-container {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.no-products-container p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .products-grid {
@@ -246,6 +260,10 @@
 
   .card-shine {
     display: none;
+  }
+  .seeMore {
+    font-size: 1.2rem;
+    text-align: center;
   }
 }
 /* Further target touch devices specifically */

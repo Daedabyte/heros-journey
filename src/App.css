@@ -67,8 +67,21 @@ a:hover {
   color: var(--secondary-color);
 }
 
+.mobile-break {
+  display: none;
+}
+
+.center {
+  text-align: center;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .section-title {
     font-size: 2rem;
+  }
+
+  .mobile-break {
+    display: block;
   }
 }

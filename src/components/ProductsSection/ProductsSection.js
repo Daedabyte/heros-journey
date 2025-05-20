@@ -13,7 +13,7 @@ const base = Airtable.base(config.airtable.baseId);
 const table = base(config.airtable.cardTableId);
 
 const CACHE_KEY = "productsCache";
-const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const CACHE_EXPIRY = 10 * 60 * 1000; // 10 minutes in milliseconds
 
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -22,6 +22,7 @@ const ProductsSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isRetrying, setIsRetrying] = useState(false);
+  const [testState, setTestState] = useState("normal"); // Options: 'normal', 'empty', 'error', 'loading'
   const maxRetries = 3;
 
   const cardRefs = useRef([]);
@@ -150,6 +151,18 @@ const ProductsSection = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, [activeCategory, products]);
 
+  useEffect(() => {
+    const simulateState = () => {
+      setLoading(testState === "loading");
+      setError(testState === "error" ? "Simulated error state" : null);
+      if (testState === "empty") {
+        setProducts([]);
+      }
+    };
+
+    simulateState();
+  }, [testState]);
+
   const handleTilt = (e, index) => {
     if (isMobile) return;
 
@@ -232,73 +245,99 @@ const ProductsSection = () => {
   };
 
   return (
-    <section id="products" className="products-section">
-      <div className="section-container">
-        <h2 className="section-title">What we got</h2>
+    <>
+      <section id="products" className="products-section">
+        <div className="section-container">
+          <h2 className="section-title">Inside the Case</h2>
+          {products.length > 0 && (
+            <p>
+              Take a look at a few of the cards we currently have in the shop!
+            </p>
+          )}
 
-        <div className="product-categories">
-          {getCategories().map((category) => (
-            <button
-              key={category}
-              className={`category-btn ${
-                activeCategory === category ? "active" : ""
-              }`}
-              onClick={() => setCategory(category)}
-            >
-              {category === "all"
-                ? "All"
-                : category === "magic"
-                ? "Magic: The Gathering"
-                : category === "pokemon"
-                ? "Pokemon"
-                : category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        {loading ? (
-          <div className="loading-container">
-            <p>Loading awesome cards...</p>
-          </div>
-        ) : error ? (
-          <div className="error-container">
-            <p>{error}</p>
-          </div>
-        ) : (
-          <div className="products-grid">
-            {filterProducts().map((product, index) => (
-              <div key={product.id} className="product-card-container">
-                <div
-                  className={`product-card ${
-                    product.isHolographic ? "holographic" : ""
-                  } ${isMobile ? "mobile" : ""}`}
-                  data-category={product.category}
-                  ref={(el) => (cardRefs.current[index] = el)}
-                  onMouseMove={(e) => handleTilt(e, index)}
-                  onMouseLeave={() => resetTilt(index)}
-                >
-                  <div className="card-content">
-                    {product.isHolographic && !isMobile && (
-                      <div className="card-shine"></div>
-                    )}
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      onError={(e) => {
-                        e.target.src = "/images/placeholder-card.jpg";
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="product-info">
-                  <h3>{product.name}</h3>
-                </div>
+          {loading ? (
+            <div className="loading-container">
+              <p>Loading awesome cards...</p>
+            </div>
+          ) : error ? (
+            <div className="error-container no-products-container">
+              <p>
+                <i class="fa-solid fa-truck-ramp-box"></i> Restocking, come back
+                soon!
+              </p>
+            </div>
+          ) : products.length === 0 ? (
+            <div className="no-products-container">
+              <p>
+                <i class="fa-solid fa-truck-ramp-box"></i> Restocking, come back
+                again soon!
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="product-categories">
+                {getCategories().map((category) => (
+                  <button
+                    key={category}
+                    className={`category-btn ${
+                      activeCategory === category ? "active" : ""
+                    }`}
+                    onClick={() => setCategory(category)}
+                  >
+                    {category === "all"
+                      ? "All"
+                      : category === "magic"
+                      ? "Magic: The Gathering"
+                      : category === "pokemon"
+                      ? "Pokemon"
+                      : category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+
+              <div className="products-grid">
+                {filterProducts().map((product, index) => (
+                  <div key={product.id} className="product-card-container">
+                    <div
+                      className={`product-card ${
+                        product.isHolographic ? "holographic" : ""
+                      } ${isMobile ? "mobile" : ""}`}
+                      data-category={product.category}
+                      ref={(el) => (cardRefs.current[index] = el)}
+                      onMouseMove={(e) => handleTilt(e, index)}
+                      onMouseLeave={() => resetTilt(index)}
+                    >
+                      <div className="card-content">
+                        {product.isHolographic && !isMobile && (
+                          <div className="card-shine"></div>
+                        )}
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          onError={(e) => {
+                            e.target.src = "/images/placeholder-card.jpg";
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="product-info">
+                      <h3>{product.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+      {products.length > 0 && (
+        <p className="seeMore">
+          Come visit us
+          <br className="mobile-break" />
+          to see everything we have!
+        </p>
+      )}
+    </>
   );
 };
 

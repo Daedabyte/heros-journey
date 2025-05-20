@@ -5,6 +5,17 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import "./EventsSection.css";
+import { config } from "../../config";
+import Airtable from "airtable";
+
+// Configure Airtable
+Airtable.configure({
+  endpointUrl: config.airtable.endpointUrl,
+  apiKey: config.airtable.apiKey,
+});
+
+const base = Airtable.base(config.airtable.baseId);
+const table = base(config.airtable.calendarTableId);
 
 const EventsSection = () => {
   // Get current date and year/month for creating events
@@ -65,58 +76,46 @@ const EventsSection = () => {
   ];
 
   // Special events for calendar
-  const [specialEvents, setSpecialEvents] = useState([
-    {
-      id: "1",
-      title: "MTG Pre-Release Weekend",
-      start: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-17T10:00:00`,
-      end: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-19T19:00:00`,
-      description: "Be the first to play with cards from the newest set!",
-      allDay: true,
-      color: "#326308",
-      textColor: "#ffffff",
-    },
-    {
-      id: "2",
-      title: "Lorcana Tournament",
-      start: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-21T16:00:00`,
-      end: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-21T20:00:00`,
-      description: "Tournament for the hot new Disney Lorcana card game.",
-      color: "#ccbb47",
-      textColor: "#326308",
-    },
-    {
-      id: "3",
-      title: "Board Game Night - Special Edition",
-      start: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-25T17:00:00`,
-      end: `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-25T22:00:00`,
-      description: "Extended board game night with prizes and special guests!",
-      color: "#326308",
-      textColor: "#ffffff",
-    },
-  ]);
-
+  const [specialEvents, setSpecialEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showFullCalendar, setShowFullCalendar] = useState(false);
   const [calendarView, setCalendarView] = useState("dayGridMonth");
+
+  const fetchSpecialEvents = async () => {
+    try {
+      const records = await table.select().all();
+
+      const transformedEvents = records.map((record) => {
+        const fields = record.fields;
+        return {
+          id: record.id,
+          title: fields.title || "Unnamed Event",
+          start: fields.startDate, // Already in ISO format
+          end: fields.endDate, // Already in ISO format
+          description: fields.description || "",
+          allDay: false, // Set based on your needs
+          color: "#326308", // You might want to add these to Airtable
+          textColor: "#ffffff", // You might want to add these to Airtable
+        };
+      });
+
+      setSpecialEvents(transformedEvents);
+      setError(null);
+    } catch (err) {
+      console.error("Error fetching special events:", err);
+      setError("Failed to load special events");
+      // Set fallback events if needed
+      setSpecialEvents([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSpecialEvents();
+  }, []);
 
   const handleEventClick = (clickInfo) => {
     setSelectedEvent(clickInfo.event);
@@ -202,8 +201,11 @@ const EventsSection = () => {
 
         <h3>Special Events</h3>
 
-        {/* Special Events Cards View */}
-        {upcomingSpecialEvents.length > 0 ? (
+        {loading ? (
+          <p>Loading special events...</p>
+        ) : error ? (
+          <p className="error-message">{error}</p>
+        ) : upcomingSpecialEvents.length > 0 ? (
           <div className="events-grid">
             {upcomingSpecialEvents.map((event) => {
               const eventDate = new Date(event.start);

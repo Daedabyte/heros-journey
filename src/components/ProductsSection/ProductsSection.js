@@ -10,7 +10,7 @@ Airtable.configure({
 });
 
 const base = Airtable.base(config.airtable.baseId);
-const table = base(config.airtable.tableId);
+const table = base(config.airtable.cardTableId);
 
 const CACHE_KEY = "productsCache";
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours in milliseconds

@@ -26,6 +26,7 @@
 }
 
 .carousel-track img {
+  min-height: 40px;
   height: 80px;
   width: auto;
   margin: 0 2rem;

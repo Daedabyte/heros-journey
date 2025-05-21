@@ -191,12 +191,14 @@ const ProductsSection = () => {
 
     const shine = card.querySelector(".card-shine");
     if (shine) {
-      shine.style.background = `radial-gradient(circle at ${
-        50 + (mouseX / cardWidth) * 30
-      }% ${
-        50 + (mouseY / cardHeight) * 30
-      }%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%)`;
-      shine.style.opacity = "1";
+      shine.style.background = `conic-gradient(
+        from ${
+          Math.atan2(mouseY, mouseX) * (180 / Math.PI) + 180
+        }deg at 50% 50%,
+        #ff00cc, #3333ff, #00ffcc, #ffff00, #ff6600, #ff00cc 100%
+      )`;
+      shine.style.mixBlendMode = "screen";
+      shine.style.opacity = "0.25";
     }
   };
 

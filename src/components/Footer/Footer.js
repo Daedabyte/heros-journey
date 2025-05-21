@@ -16,9 +16,6 @@ const Footer = () => {
           >
             <i className="fab fa-facebook"></i>
           </a>
-          <a href="#">
-            <i className="fab fa-instagram"></i>
-          </a>
           <a
             href="https://discord.gg/QPjjWGeAuK"
             target="_blank"
